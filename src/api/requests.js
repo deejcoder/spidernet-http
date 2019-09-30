@@ -2,7 +2,8 @@
 import axios from 'axios';
 
 // The public URL to the API service e.g https://spidernet.thecodingkiwi.com:8080/api
-const BASE_URL = process.env.API_BASE_URL;
+const BASE_URL = process.env.REACT_APP_API_BASE_URL;
+console.log(BASE_URL);
 
 const client = axios.create({
     baseURL: BASE_URL,
