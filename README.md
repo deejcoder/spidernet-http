@@ -26,7 +26,7 @@ yarn test
 * `PUT /servers/create` creates a new server, example data:
 ```json
 {
-    "addr": 192.168.1.1,
+    "addr": "192.168.1.1",
     "nick": "gateway",
     "tags": [
         "router",
