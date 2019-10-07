@@ -1,20 +1,14 @@
 # Spidernet-HTTP
 The frontend to the Spidernet project uses React. Spidernet is a server discovery search engine which also monitors server activity.
 
-## Deploying for Production
-There are only a few simple things that you need to do when deploying this web app.
-* Build the web app using `yarn build`, this will build a production-ready web app. Copy the contents from the `./build` folder.
-* Whenever deploying this React app, assure you set the API_BASE_URL environmental variable, for example;
-`export REACT_APP_API_BASE_URL=https://spidernet.thecodingkiwi.com:8080/api`, this will represent the URI to send API requests to.
-* It is highly recommended to deploy the web app using TLS/HTTPS, as well as the API.
-
 ## Deploying for Development
 To get rocking, all you have to do is...
-* Set a new environmental variable; `export REACT_APP_API_BASE_URL={url_to_api}` or rename .env.development.example, and configure it.
+* Rename .env.development.example to .env.development
+* Update .env.development to the true URI to the API, or you can set it to `spidernet.thecodingkiwi.com:8081/api`
 * Execute `yarn start`
 
 ## Testing
-To test your code, assure its in the form `{filename}.test.js` and then execute
+To test your code, assure your test file is in the form of `{filename}.test.js` and then execute
 ```bash
 export REACT_APP_API_BASE_URL={url_to_api}
 yarn test
@@ -23,3 +17,22 @@ yarn test
 ## Roadmap
 * `/src/api` communicates with the API
 * ...
+
+## API endpoints
+* `POST /token` used to authorize a client
+* `GET /token/validate` used to check if a client is authorized
+* `GET /servers/?start={start}` returns 20 servers, use `{start}` for pagination
+* `GET /servers/search?term={term}&start={start}&size={size}` to search servers; `{term}` is the search term, `{start}` is the offset, `{size}` is the amount to return
+* `PUT /servers/create` creates a new server, example data:
+```json
+{
+    "addr": 192.168.1.1,
+    "nick": "gateway",
+    "tags": [
+        "router",
+        "modem"
+    ]
+}
+```
+* `DELETE /servers/delete?id={id}` deletes a server with the provided ID
+* `POST /servers/update` updates a server, use same format as creating a server
